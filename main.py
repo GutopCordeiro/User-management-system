@@ -2,7 +2,6 @@
 users = []
 
 def register_user():
-    
     """ Solicita ao usuário o nome, email e idade, e então adiciona o usuário à lista de usuários."""
     while True:
         name = input ("Qual seu nome? ").lo
