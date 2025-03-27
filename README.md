@@ -14,9 +14,8 @@ Este projeto é um sistema simples de gerenciamento de usuários em Python, que 
 
 ## Como Executar
 
-1. Certifique-se de ter o Python instalado (versão 3.x recomendada).
-2. Salve o código em um arquivo `main.py`.
-3. No terminal, execute: python main.py
+Certifique-se de ter o Python instalado (versão 3.x recomendada).
+No terminal, execute: python main.py
 Siga as instruções no menu interativo.
    ## Estrutura do Código
 
