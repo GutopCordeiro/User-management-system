@@ -4,9 +4,9 @@ users = []
 def register_user():
     """ Solicita ao usuário o nome, email e idade, e então adiciona o usuário à lista de usuários."""
     while True:
-        name = input ("Qual seu nome? ").lo
+        name = input ("Qual seu nome? ").lower()
         if name.isalpha():
-            name =str(name)
+            name =str(name).lower()
             break
         else:
             print("Por favor digite apenas letras")
@@ -57,7 +57,7 @@ def remove_user():
     found = False  
 
     for user in users:
-        if user["nome"].lower() == user_remove:
+        if user["nome"] == user_remove:
             users.remove(user)  
             print("Usuário removido com sucesso!")
             input("\nPressione Enter para voltar ao menu")
@@ -66,6 +66,52 @@ def remove_user():
 
     if not found:  
         print("Usuário não encontrado!")            
+
+def edit_user():
+    """Permite que o usuário edite suas informações."""
+    user_name = input("Qual usuário o nome do usuário que você gostaria de editar? ")
+    found = False
+    for user in users:
+        if user["nome"] == user_name.lower():
+            found = True
+            print(f"Usuário encontrado: {user_name}")
+            while True:
+                print("1- Editar nome")
+                print("2- Editar idade")
+                print("3- Editar email")
+                print("4- Voltar para o menu")
+                choose = input("Escolha um número 1-4: ")
+                if choose == '1':
+                    while True:
+                        new_name = input("Qual o novo nome? ")
+                        if new_name.isalpha():
+                            user["nome"] = new_name.lower()
+                            print("Nome atualizado com sucesso!")
+                            break
+                        else:
+                            print("Por favor digite apenas letras")
+                elif choose == '2':
+                    while True:
+                        new_age = input("Qual a nova idade? ")
+                        if new_age.isdigit():
+                            user["idade"] = int(new_age)
+                            print("Idade atualizada com sucesso!")
+                            break
+                        else: 
+                            print("Por favor digite apenas números")
+                elif choose == '3':
+                    new_email = input("Qual o novo email? ")
+                    user["email"] = new_email.lower()
+                    print ("Email atualizado com sucesso!")
+                elif choose == '4':
+                    print("Edição cancelada")
+                    break
+                else:
+                    print("insira uma opção valida (1-4)")
+            break
+    if not found:
+        print("usuário não encontrado :(")
+        input("\n Pressione enter para voltar ao menu")
 
 def display_menu():
     """
@@ -76,7 +122,8 @@ def display_menu():
     print("2. Listar todos os usuários")
     print("3. Buscar usuário por nome")
     print("4. Deletar usuário") 
-    print("5. Sair do programa")
+    print("5. Editar dados do usuário")
+    print("6. Sair do programa")
     
 
 def main():
@@ -85,7 +132,7 @@ def main():
     """
     while True:
         display_menu()
-        choice = input("Escolha uma opção (1-5): ")
+        choice = input("Escolha uma opção (1-6): ")
 
         if choice == '1':
             register_user()
@@ -96,7 +143,9 @@ def main():
         elif choice == '4':
             remove_user()  
         elif choice == '5':
-            print("Saindo do programa. Obrigado!")
+            edit_user()
+        elif choice == '6':
+            print("Saindo do programa, obrigado :)")  
             break
         else:
             print("Opção inválida. Por favor, escolha entre 1 e 5.")
