@@ -1,4 +1,4 @@
-# Automind Technical Test
+# User management system
 
 ## Descrição
 
